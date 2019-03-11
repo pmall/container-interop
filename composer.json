@@ -1,0 +1,41 @@
+{
+    "name": "quanta/container-interop",
+    "type": "library",
+    "description": "Library for creating quanta Psr-11 container configuration from interop service providers",
+    "keywords": [
+        "psr-11",
+        "container",
+        "dependency-injection",
+        "service-provider"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/quantaphp/container-interop",
+    "support": {
+        "issues": "https://github.com/quantaphp/container-interop/issues",
+        "source": "https://github.com/quantaphp/container-interop"
+    },
+    "authors": [
+        {
+            "name": "pmall",
+            "email": "pierre.mallinjoud@gmail.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7.0",
+        "container-interop/service-provider": "^0.4.0",
+        "quanta/container-configuration": "^0.4.0"
+    },
+    "require-dev": {
+        "eloquent/phony-kahlan": "^2.0",
+        "kahlan/kahlan": "^4.0",
+        "phpstan/phpstan": "^0.11.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Quanta\\Container\\": "src"
+        }
+    }
+}
