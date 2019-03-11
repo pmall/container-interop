@@ -11,6 +11,20 @@ use Quanta\Container\Maps\FactoryMap;
 use Quanta\Container\Passes\ExtensionPass;
 use Quanta\Container\Passes\MergedProcessingPass;
 
+describe('InteropConfigurationEntry::instance()', function () {
+
+    it('should return a new InteropConfigurationEntry using the given service provider', function () {
+
+        $provider = mock(ServiceProviderInterface::class);
+
+        $test = InteropConfigurationEntry::instance($provider->get());
+
+        expect($test)->toEqual(new InteropConfigurationEntry($provider->get()));
+
+    });
+
+});
+
 describe('InteropConfigurationEntry', function () {
 
     beforeEach(function () {

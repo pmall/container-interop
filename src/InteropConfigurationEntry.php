@@ -18,6 +18,17 @@ final class InteropConfigurationEntry implements ConfigurationEntryInterface
     private $provider;
 
     /**
+     * Return a new InteropConfigurationEntry from the given service provider.
+     *
+     * @param \Interop\Container\ServiceProviderInterface $provider
+     * @return \Quanta\Container\InteropConfigurationEntry
+     */
+    public static function instance(ServiceProviderInterface $provider): InteropConfigurationEntry
+    {
+        return new InteropConfigurationEntry($provider);
+    }
+
+    /**
      * Constructor.
      *
      * @param \Interop\Container\ServiceProviderInterface $provider
