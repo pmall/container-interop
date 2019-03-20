@@ -4,7 +4,7 @@ namespace Quanta\Container;
 
 use Interop\Container\ServiceProviderInterface;
 
-final class InteropConfigurationSource implements ConfigurationSourceInterface
+final class ServiceProviderCollection implements ConfigurationSourceInterface
 {
     /**
      * The array of service providers to adapt as a configuration entry.
@@ -29,7 +29,7 @@ final class InteropConfigurationSource implements ConfigurationSourceInterface
     public function entry(): ConfigurationEntryInterface
     {
         return new MergedConfigurationEntry(
-            ...array_map([InteropConfigurationEntry::class, 'instance'], $this->providers)
+            ...array_map([ServiceProviderConfiguration::class, 'instance'], $this->providers)
         );
     }
 }

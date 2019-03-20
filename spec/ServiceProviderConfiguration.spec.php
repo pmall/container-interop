@@ -5,33 +5,33 @@ use function Eloquent\Phony\Kahlan\mock;
 use Interop\Container\ServiceProviderInterface;
 
 use Quanta\Container\Configuration;
-use Quanta\Container\InteropConfigurationEntry;
 use Quanta\Container\ConfigurationEntryInterface;
+use Quanta\Container\ServiceProviderConfiguration;
 use Quanta\Container\Maps\FactoryMap;
 use Quanta\Container\Passes\ExtensionPass;
 use Quanta\Container\Passes\MergedProcessingPass;
 
-describe('InteropConfigurationEntry::instance()', function () {
+describe('ServiceProviderConfiguration::instance()', function () {
 
-    it('should return a new InteropConfigurationEntry using the given service provider', function () {
+    it('should return a new ServiceProviderConfiguration using the given service provider', function () {
 
         $provider = mock(ServiceProviderInterface::class);
 
-        $test = InteropConfigurationEntry::instance($provider->get());
+        $test = ServiceProviderConfiguration::instance($provider->get());
 
-        expect($test)->toEqual(new InteropConfigurationEntry($provider->get()));
+        expect($test)->toEqual(new ServiceProviderConfiguration($provider->get()));
 
     });
 
 });
 
-describe('InteropConfigurationEntry', function () {
+describe('ServiceProviderConfiguration', function () {
 
     beforeEach(function () {
 
         $this->provider = mock(ServiceProviderInterface::class);
 
-        $this->entry = new InteropConfigurationEntry($this->provider->get());
+        $this->entry = new ServiceProviderConfiguration($this->provider->get());
 
     });
 

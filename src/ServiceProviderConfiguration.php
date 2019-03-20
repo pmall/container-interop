@@ -8,7 +8,7 @@ use Quanta\Container\Maps\FactoryMap;
 use Quanta\Container\Passes\ExtensionPass;
 use Quanta\Container\Passes\MergedProcessingPass;
 
-final class InteropConfigurationEntry implements ConfigurationEntryInterface
+final class ServiceProviderConfiguration implements ConfigurationEntryInterface
 {
     /**
      * The service provider to adapt as a configuration.
@@ -18,14 +18,15 @@ final class InteropConfigurationEntry implements ConfigurationEntryInterface
     private $provider;
 
     /**
-     * Return a new InteropConfigurationEntry from the given service provider.
+     * Return a new ServiceProviderConfiguration from the given service
+     * provider.
      *
      * @param \Interop\Container\ServiceProviderInterface $provider
-     * @return \Quanta\Container\InteropConfigurationEntry
+     * @return \Quanta\Container\ServiceProviderConfiguration
      */
-    public static function instance(ServiceProviderInterface $provider): InteropConfigurationEntry
+    public static function instance(ServiceProviderInterface $provider): self
     {
-        return new InteropConfigurationEntry($provider);
+        return new self($provider);
     }
 
     /**
