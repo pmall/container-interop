@@ -27,7 +27,7 @@ describe('ServiceProviderCollection', function () {
 
         describe('->configuration()', function () {
 
-            it('should return an empty merged configuration entry', function () {
+            it('should return an empty merged configuration', function () {
 
                 $test = $this->source->configuration();
 
@@ -63,7 +63,7 @@ describe('ServiceProviderCollection', function () {
 
         describe('->configuration()', function () {
 
-            it('should create interop configuration entries from the service providers and merge them', function () {
+            it('should return a merged configuration', function () {
 
                 $test = $this->source->configuration();
 
