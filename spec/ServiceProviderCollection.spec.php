@@ -4,7 +4,7 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Container\ServiceProviderInterface;
 
-use Quanta\Container\MergedConfigurationEntry;
+use Quanta\Container\MergedConfiguration;
 use Quanta\Container\ServiceProviderCollection;
 use Quanta\Container\ConfigurationSourceInterface;
 use Quanta\Container\ServiceProviderConfiguration;
@@ -25,13 +25,13 @@ describe('ServiceProviderCollection', function () {
 
         });
 
-        describe('->entry()', function () {
+        describe('->configuration()', function () {
 
             it('should return an empty merged configuration entry', function () {
 
-                $test = $this->source->entry();
+                $test = $this->source->configuration();
 
-                expect($test)->toEqual(new MergedConfigurationEntry);
+                expect($test)->toEqual(new MergedConfiguration);
 
             });
 
@@ -61,13 +61,13 @@ describe('ServiceProviderCollection', function () {
 
         });
 
-        describe('->entry()', function () {
+        describe('->configuration()', function () {
 
             it('should create interop configuration entries from the service providers and merge them', function () {
 
-                $test = $this->source->entry();
+                $test = $this->source->configuration();
 
-                expect($test)->toEqual(new MergedConfigurationEntry(...[
+                expect($test)->toEqual(new MergedConfiguration(...[
                     new ServiceProviderConfiguration($this->provider1->get()),
                     new ServiceProviderConfiguration($this->provider2->get()),
                     new ServiceProviderConfiguration($this->provider3->get()),

@@ -7,7 +7,7 @@ use Interop\Container\ServiceProviderInterface;
 final class ServiceProviderCollection implements ConfigurationSourceInterface
 {
     /**
-     * The array of service providers to adapt as a configuration entry.
+     * The array of service providers.
      *
      * @var \Interop\Container\ServiceProviderInterface[]
      */
@@ -26,9 +26,9 @@ final class ServiceProviderCollection implements ConfigurationSourceInterface
     /**
      * @inheritdoc
      */
-    public function entry(): ConfigurationEntryInterface
+    public function configuration(): ConfigurationInterface
     {
-        return new MergedConfigurationEntry(
+        return new MergedConfiguration(
             ...array_map([ServiceProviderConfiguration::class, 'instance'], $this->providers)
         );
     }

@@ -4,8 +4,8 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Container\ServiceProviderInterface;
 
-use Quanta\Container\Configuration;
-use Quanta\Container\ConfigurationEntryInterface;
+use Quanta\Container\ConfigurationEntry;
+use Quanta\Container\ConfigurationInterface;
 use Quanta\Container\ServiceProviderConfiguration;
 use Quanta\Container\Maps\FactoryMap;
 use Quanta\Container\Passes\ExtensionPass;
@@ -31,17 +31,17 @@ describe('ServiceProviderConfiguration', function () {
 
         $this->provider = mock(ServiceProviderInterface::class);
 
-        $this->entry = new ServiceProviderConfiguration($this->provider->get());
+        $this->configuration = new ServiceProviderConfiguration($this->provider->get());
 
     });
 
-    it('should implement ConfigurationEntryInterface', function () {
+    it('should implement ConfigurationInterface', function () {
 
-        expect($this->entry)->toBeAnInstanceOf(ConfigurationEntryInterface::class);
+        expect($this->configuration)->toBeAnInstanceOf(ConfigurationInterface::class);
 
     });
 
-    describe('->configuration()', function () {
+    describe('->entry()', function () {
 
         context('when the provider ->getFactories() and ->getMethods() methods both return arrays of callables', function () {
 
@@ -59,9 +59,9 @@ describe('ServiceProviderConfiguration', function () {
                     'id3' => $extension3 = function () {},
                 ]);
 
-                $test = $this->entry->configuration();
+                $test = $this->configuration->entry();
 
-                expect($test)->toEqual(new Configuration(
+                expect($test)->toEqual(new ConfigurationEntry(
                     new FactoryMap([
                         'id1' => $factory1,
                         'id2' => $factory2,
@@ -85,7 +85,7 @@ describe('ServiceProviderConfiguration', function () {
                 $this->provider->getFactories->returns(1);
                 $this->provider->getExtensions->returns([]);
 
-                expect([$this->entry, 'configuration'])->toThrow(new UnexpectedValueException);
+                expect([$this->configuration, 'entry'])->toThrow(new UnexpectedValueException);
 
             });
 
@@ -103,7 +103,7 @@ describe('ServiceProviderConfiguration', function () {
 
                 $this->provider->getExtensions->returns([]);
 
-                expect([$this->entry, 'configuration'])->toThrow(new UnexpectedValueException);
+                expect([$this->configuration, 'entry'])->toThrow(new UnexpectedValueException);
 
             });
 
@@ -116,7 +116,7 @@ describe('ServiceProviderConfiguration', function () {
                 $this->provider->getFactories->returns([]);
                 $this->provider->getExtensions->returns(1);
 
-                expect([$this->entry, 'configuration'])->toThrow(new UnexpectedValueException);
+                expect([$this->configuration, 'entry'])->toThrow(new UnexpectedValueException);
 
             });
 
@@ -130,7 +130,7 @@ describe('ServiceProviderConfiguration', function () {
 
                 $this->provider->getExtensions->returns();
 
-                expect([$this->entry, 'configuration'])->toThrow(new UnexpectedValueException);
+                expect([$this->configuration, 'entry'])->toThrow(new UnexpectedValueException);
 
             });
 

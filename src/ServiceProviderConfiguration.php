@@ -8,10 +8,10 @@ use Quanta\Container\Maps\FactoryMap;
 use Quanta\Container\Passes\ExtensionPass;
 use Quanta\Container\Passes\MergedProcessingPass;
 
-final class ServiceProviderConfiguration implements ConfigurationEntryInterface
+final class ServiceProviderConfiguration implements ConfigurationInterface
 {
     /**
-     * The service provider to adapt as a configuration.
+     * The service provider.
      *
      * @var \Interop\Container\ServiceProviderInterface
      */
@@ -42,7 +42,7 @@ final class ServiceProviderConfiguration implements ConfigurationEntryInterface
     /**
      * @inheritdoc
      */
-    public function configuration(): Configuration
+    public function entry(): ConfigurationEntry
     {
         $factories = $this->provider->getFactories();
 
@@ -101,6 +101,6 @@ final class ServiceProviderConfiguration implements ConfigurationEntryInterface
             }
         }
 
-        return new Configuration($map, new MergedProcessingPass(...$passes));
+        return new ConfigurationEntry($map, new MergedProcessingPass(...$passes));
     }
 }
