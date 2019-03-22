@@ -4,7 +4,7 @@ namespace Quanta\Container;
 
 use Interop\Container\ServiceProviderInterface;
 
-final class ServiceProviderCollection implements ConfigurationSourceInterface
+final class ServiceProviderConfigurationSource implements ConfigurationSourceInterface
 {
     /**
      * The array of service providers.
