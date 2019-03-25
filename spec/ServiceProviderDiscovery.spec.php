@@ -5,13 +5,13 @@ use function Eloquent\Phony\Kahlan\mock;
 use Interop\Container\ServiceProviderInterface;
 
 use Quanta\Container\Configuration\MergedConfiguration;
-use Quanta\Container\Configuration\ImportedConfiguration;
 use Quanta\Container\Configuration\ServiceProviderAdapter;
+use Quanta\Container\Configuration\ServiceProviderDiscovery;
 use Quanta\Container\Configuration\ConfigurationSourceInterface;
 
 require_once __DIR__ . '/.test/classes.php';
 
-describe('ImportedConfiguration', function () {
+describe('ServiceProviderDiscovery', function () {
 
     context('when the collection is an array', function () {
 
@@ -19,7 +19,7 @@ describe('ImportedConfiguration', function () {
 
             beforeEach(function () {
 
-                $this->source = new ImportedConfiguration([]);
+                $this->source = new ServiceProviderDiscovery([]);
 
             });
 
@@ -47,7 +47,7 @@ describe('ImportedConfiguration', function () {
 
             beforeEach(function () {
 
-                $this->source = new ImportedConfiguration([
+                $this->source = new ServiceProviderDiscovery([
                     1,
                     new class {},
                     Test\TestServiceProvider1::class,
@@ -95,7 +95,7 @@ describe('ImportedConfiguration', function () {
 
             beforeEach(function () {
 
-                $this->source = new ImportedConfiguration(new ArrayIterator([]));
+                $this->source = new ServiceProviderDiscovery(new ArrayIterator([]));
 
             });
 
@@ -123,7 +123,7 @@ describe('ImportedConfiguration', function () {
 
             beforeEach(function () {
 
-                $this->source = new ImportedConfiguration(new ArrayIterator([
+                $this->source = new ServiceProviderDiscovery(new ArrayIterator([
                     1,
                     new class {},
                     Test\TestServiceProvider1::class,
@@ -171,7 +171,7 @@ describe('ImportedConfiguration', function () {
 
             beforeEach(function () {
 
-                $this->source = new ImportedConfiguration(new class implements IteratorAggregate
+                $this->source = new ServiceProviderDiscovery(new class implements IteratorAggregate
                 {
                     public function getIterator()
                     {
@@ -205,7 +205,7 @@ describe('ImportedConfiguration', function () {
 
             beforeEach(function () {
 
-                $this->source = new ImportedConfiguration(new class implements IteratorAggregate
+                $this->source = new ServiceProviderDiscovery(new class implements IteratorAggregate
                 {
                     public function getIterator()
                     {

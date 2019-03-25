@@ -4,7 +4,7 @@ namespace Quanta\Container\Configuration;
 
 use Interop\Container\ServiceProviderInterface;
 
-final class ImportedConfiguration implements ConfigurationSourceInterface
+final class ServiceProviderDiscovery implements ConfigurationSourceInterface
 {
     /**
      * The collection of class names or objects.
