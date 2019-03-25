@@ -4,10 +4,10 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Container\ServiceProviderInterface;
 
-use Quanta\Container\MergedConfiguration;
-use Quanta\Container\ImportedConfiguration;
-use Quanta\Container\ConfigurationSourceInterface;
-use Quanta\Container\ServiceProviderConfiguration;
+use Quanta\Container\Configuration\MergedConfiguration;
+use Quanta\Container\Configuration\ImportedConfiguration;
+use Quanta\Container\Configuration\ServiceProviderAdapter;
+use Quanta\Container\Configuration\ConfigurationSourceInterface;
 
 require_once __DIR__ . '/.test/classes.php';
 
@@ -73,9 +73,9 @@ describe('ImportedConfiguration', function () {
                     $test = $this->source->configuration();
 
                     expect($test)->toEqual(new MergedConfiguration(...[
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider1),
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider2),
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider3),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider1),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider2),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider3),
                     ]));
 
                 });
@@ -146,9 +146,9 @@ describe('ImportedConfiguration', function () {
                     $test = $this->source->configuration();
 
                     expect($test)->toEqual(new MergedConfiguration(...[
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider1),
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider2),
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider3),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider1),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider2),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider3),
                     ]));
 
                 });
@@ -231,9 +231,9 @@ describe('ImportedConfiguration', function () {
                     $test = $this->source->configuration();
 
                     expect($test)->toEqual(new MergedConfiguration(...[
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider1),
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider2),
-                        new ServiceProviderConfiguration(new Test\TestServiceProvider3),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider1),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider2),
+                        new ServiceProviderAdapter(new Test\TestServiceProvider3),
                     ]));
 
                 });

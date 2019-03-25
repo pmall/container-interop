@@ -4,34 +4,34 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Container\ServiceProviderInterface;
 
-use Quanta\Container\ConfigurationEntry;
-use Quanta\Container\ConfigurationInterface;
-use Quanta\Container\ServiceProviderConfiguration;
-use Quanta\Container\Maps\FactoryMap;
-use Quanta\Container\Passes\ExtensionPass;
-use Quanta\Container\Passes\MergedProcessingPass;
+use Quanta\Container\FactoryMap;
+use Quanta\Container\Configuration\ConfigurationEntry;
+use Quanta\Container\Configuration\ConfigurationInterface;
+use Quanta\Container\Configuration\ServiceProviderAdapter;
+use Quanta\Container\Configuration\Passes\ExtensionPass;
+use Quanta\Container\Configuration\Passes\MergedProcessingPass;
 
-describe('ServiceProviderConfiguration::instance()', function () {
+describe('ServiceProviderAdapter::instance()', function () {
 
-    it('should return a new ServiceProviderConfiguration using the given service provider', function () {
+    it('should return a new ServiceProviderAdapter using the given service provider', function () {
 
         $provider = mock(ServiceProviderInterface::class);
 
-        $test = ServiceProviderConfiguration::instance($provider->get());
+        $test = ServiceProviderAdapter::instance($provider->get());
 
-        expect($test)->toEqual(new ServiceProviderConfiguration($provider->get()));
+        expect($test)->toEqual(new ServiceProviderAdapter($provider->get()));
 
     });
 
 });
 
-describe('ServiceProviderConfiguration', function () {
+describe('ServiceProviderAdapter', function () {
 
     beforeEach(function () {
 
         $this->provider = mock(ServiceProviderInterface::class);
 
-        $this->configuration = new ServiceProviderConfiguration($this->provider->get());
+        $this->configuration = new ServiceProviderAdapter($this->provider->get());
 
     });
 

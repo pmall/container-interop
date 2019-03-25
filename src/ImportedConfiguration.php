@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Quanta\Container;
+namespace Quanta\Container\Configuration;
 
 use Interop\Container\ServiceProviderInterface;
 
@@ -43,7 +43,7 @@ final class ImportedConfiguration implements ConfigurationSourceInterface
         }
 
         return new MergedConfiguration(
-            ...array_map([ServiceProviderConfiguration::class, 'instance'], $providers)
+            ...array_map([ServiceProviderAdapter::class, 'instance'], $providers)
         );
     }
 

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Quanta\Container;
+namespace Quanta\Container\Configuration;
 
 use Interop\Container\ServiceProviderInterface;
 
-final class ServiceProviderConfigurationSource implements ConfigurationSourceInterface
+final class ServiceProviderCollection implements ConfigurationSourceInterface
 {
     /**
      * The array of service providers.
@@ -29,7 +29,7 @@ final class ServiceProviderConfigurationSource implements ConfigurationSourceInt
     public function configuration(): ConfigurationInterface
     {
         return new MergedConfiguration(
-            ...array_map([ServiceProviderConfiguration::class, 'instance'], $this->providers)
+            ...array_map([ServiceProviderAdapter::class, 'instance'], $this->providers)
         );
     }
 }

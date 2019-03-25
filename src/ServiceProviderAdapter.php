@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Quanta\Container;
+namespace Quanta\Container\Configuration;
 
 use Interop\Container\ServiceProviderInterface;
 
-use Quanta\Container\Maps\FactoryMap;
-use Quanta\Container\Passes\ExtensionPass;
-use Quanta\Container\Passes\MergedProcessingPass;
+use Quanta\Container\FactoryMap;
+use Quanta\Container\Configuration\Passes\ExtensionPass;
+use Quanta\Container\Configuration\Passes\MergedProcessingPass;
 
-final class ServiceProviderConfiguration implements ConfigurationInterface
+final class ServiceProviderAdapter implements ConfigurationInterface
 {
     /**
      * The service provider.
@@ -18,11 +18,11 @@ final class ServiceProviderConfiguration implements ConfigurationInterface
     private $provider;
 
     /**
-     * Return a new ServiceProviderConfiguration from the given service
+     * Return a new ServiceProviderAdapter from the given service
      * provider.
      *
      * @param \Interop\Container\ServiceProviderInterface $provider
-     * @return \Quanta\Container\ServiceProviderConfiguration
+     * @return \Quanta\Container\Configuration\ServiceProviderAdapter
      */
     public static function instance(ServiceProviderInterface $provider): self
     {
