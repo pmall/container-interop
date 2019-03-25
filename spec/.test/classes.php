@@ -4,6 +4,11 @@ namespace Test;
 
 use Interop\Container\ServiceProviderInterface;
 
+interface TestServiceProviderInterface extends ServiceProviderInterface
+{
+    //
+}
+
 abstract class TestAbstractServiceProvider implements ServiceProviderInterface
 {
     abstract public function getFactories();

@@ -33,11 +33,11 @@ final class ImportedConfiguration implements ConfigurationSourceInterface
         $providers = [];
 
         foreach ($this->collection as $value) {
-            if ($this->isServiceProviderClassName($value)) {
+            if (is_string($value) && $this->isServiceProviderClassName($value)) {
                 $providers[] = new $value;
             }
 
-            if ($this->isServiceProviderInstance($value)) {
+            if ($value instanceof ServiceProviderInterface) {
                 $providers[] = $value;
             }
         }
@@ -48,27 +48,23 @@ final class ImportedConfiguration implements ConfigurationSourceInterface
     }
 
     /**
-     * Return whether the given value is a service provider class name.
+     * Return whether the given string is a service provider class name.
      *
-     * @param mixed $value
+     * @param string $value
      * @return bool
      */
-    private function isServiceProviderClassName($value): bool
+    private function isServiceProviderClassName(string $value): bool
     {
-        return is_string($value)
-            && class_exists($value)
-            && is_subclass_of($value, ServiceProviderInterface::class, true);
-    }
+        try {
+            $reflection = new \ReflectionClass($value);
 
-    /**
-     * Return whether the given value is a service provider implementation.
-     *
-     * @param mixed $value
-     * @return bool
-     */
-    private function isServiceProviderInstance($value): bool
-    {
-        return is_object($value)
-            && $value instanceof ServiceProviderInterface;
+            return ! $reflection->isInterface()
+                && ! $reflection->isAbstract()
+                && $reflection->implementsInterface(ServiceProviderInterface::class);
+        }
+
+        catch (\ReflectionException $e) {
+            return false;
+        }
     }
 }

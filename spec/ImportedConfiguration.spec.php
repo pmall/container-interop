@@ -56,6 +56,9 @@ describe('ImportedConfiguration', function () {
                     [],
                     Test\TestServiceProvider3::class,
                     null,
+                    Test\TestServiceProviderInterface::class,
+                    tmpfile(),
+                    Test\TestAbstractServiceProvider::class,
                 ]);
 
             });
@@ -129,6 +132,9 @@ describe('ImportedConfiguration', function () {
                     [],
                     Test\TestServiceProvider3::class,
                     null,
+                    Test\TestServiceProviderInterface::class,
+                    tmpfile(),
+                    Test\TestAbstractServiceProvider::class,
                 ]));
 
             });
@@ -212,6 +218,9 @@ describe('ImportedConfiguration', function () {
                             [],
                             Test\TestServiceProvider3::class,
                             null,
+                            Test\TestServiceProviderInterface::class,
+                            tmpfile(),
+                            Test\TestAbstractServiceProvider::class,
                         ]);
                     }
                 });
